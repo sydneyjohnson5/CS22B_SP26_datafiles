@@ -1,9 +1,9 @@
-CS 22B Module 01 - Homework 1
-Name: <Your Name>
+### CS 22B Module 01 - Homework 1
+### Name: <Your Name>
 
 ### This template is for Homework #01 reviewing the material we covered in Module 01 Essentials for CS 22B.
 
-## root folder if applicable
+### root folder if applicable
 # root='/path/to/folder/'
 
 ##### Problem 1: Trim adapter reads and validate bases
