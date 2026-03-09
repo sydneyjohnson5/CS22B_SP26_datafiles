@@ -1,5 +1,5 @@
 ### CS 22B Module 02 - Homework 3
-### Name: <Your Name>
+### Name: Sydney Johnson
 
 ##### Homework practicing Control flow #####
 
@@ -26,21 +26,52 @@ employees = [
 ]
 
 ### Part A: Calculate the average performance score for each employee
-
+for e in employees:
+    avg_score = sum(e["performance_scores"]) / len(e["performance_scores"]) 
+    e["avg_score"] = avg_score
 
 ### Part B: Classify each employee based on the average performance score and print out the classification for each employee
 ## Let's make this a function so we can reuse it in Part D
 def employee_classification (employees):
     ec_list = []
+
     for e in employees:
+        avg = sum(e["performance_scores"]) / len(e["performance_scores"])
+
+        if avg >= 4.5:
+            category = "Excellent"
+        elif avg >= 3.5:
+            category = "Good"
+        else:
+            category = "Needs Improvement"
+        
+        print(e["name"], "->", category)
+
+        
+        ec_list.append({
+            "name": e["name"],
+            "department": e["department"],
+            "avg_score": avg,
+            "category": category
+        })
+
     
+    return ec_list
+
 ec_list = employee_classification(employees)
 
 
 ### Part C. Find the employee with the highest salary in the "Engineering" department, and
 highest_salary = 0
+highest_paid_engineer = None
+
 for e in employees:
     if e["department"]=="Engineering":
+        if e["salary"] > highest_salary:
+            highest_salary = e["salary"]
+            highest_paid_engineer = e["name"]
+
+print("Highest paid Engineering employee:", highest_paid_engineer)
 
 
 ### Part D. Print a dictionary where the keys are the department names and the values are lists of employee names who belong to the "Excellent" category in each department.
@@ -48,3 +79,12 @@ excellent_emp = {}
 ec_list = employee_classification(employees)
 
 for e in ec_list:
+    if e["category"] == "Excellent":
+        dept = e["department"]
+
+        if dept not in excellent_emp:
+            excellent_emp[dept] = []
+
+        excellent_emp[dept].append(e["name"])
+
+print(excellent_emp)
